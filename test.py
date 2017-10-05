@@ -3,10 +3,11 @@ import sys
 from pygame.locals import*
 from random import*
 import os
+
 pygame.init()
 fuente = pygame.font.Font(None, 20)	
 screen = pygame.display.set_mode((800,600))
-sprite_link = pygame.image.load(os.path.join("imagen", "listSpritex2.png"))
+sprite_link = pygame.image.load(os.path.join("imagen", "listSpritex2v2.png"))
 color3 = pygame.Color(255,255,255)
 velocidadx = 0
 velocidady = 0
@@ -23,7 +24,7 @@ while True:
 	superficie.blit(sprite_link, (0,0), sprite_section)
 	ubicacionx = str(posx)
 	ubicaciony = str(posy)
-	mensaje = fuente.render(str(s),1,color3)
+	mensaje = fuente.render(ubicacionx,1,color3)
 	mensaje2 = fuente.render(ubicaciony,1,color3)
 
 
@@ -66,25 +67,62 @@ while True:
 				s=0
 
 		elif evento.type == pygame.KEYUP:
-			if evento.key == pygame.K_LEFT and not pygame.key.get_pressed()[K_RIGHT]:
-				velocidadx = 0
-				if not (pygame.key.get_pressed()[K_RIGHT] or pygame.key.get_pressed()[K_LEFT]):
+			if evento.key == pygame.K_LEFT:
+				if pygame.key.get_pressed()[K_DOWN]:
+					move = "down"
+				elif pygame.key.get_pressed()[K_UP]:
+					move = "up"
+				else:
 					movement = False
+				if pygame.key.get_pressed()[K_RIGHT]:
+					velocidadx = 0.2
+					move = "right"
+					movement = True
+				else:
+					velocidadx = 0
 				
-			elif evento.key == pygame.K_RIGHT and not pygame.key.get_pressed()[K_LEFT]:
-				velocidadx = 0
-				if not (pygame.key.get_pressed()[K_RIGHT] or pygame.key.get_pressed()[K_LEFT]):
+			elif evento.key == pygame.K_RIGHT:
+				if pygame.key.get_pressed()[K_DOWN]:
+					move = "down"
+				elif pygame.key.get_pressed()[K_UP]:
+					move = "up"
+				else:
 					movement = False
+				if pygame.key.get_pressed()[K_LEFT]:
+					velocidadx = -0.2
+					move = "left"
+					movement = True
+				else:
+					velocidadx = 0
 				
-			elif evento.key == pygame.K_UP and not pygame.key.get_pressed()[K_DOWN]:
-				velocidady = 0
-				if not (pygame.key.get_pressed()[K_UP] or pygame.key.get_pressed()[K_DOWN]):
+			elif evento.key == pygame.K_UP:
+				if pygame.key.get_pressed()[K_LEFT]:
+					move = "left"
+				elif pygame.key.get_pressed()[K_RIGHT]:
+					move = "right"
+				else:
 					movement = False
+				if pygame.key.get_pressed()[K_DOWN]:
+					velocidady = 0.2
+					move = "down"
+					movement = True
+				else:
+					velocidady = 0
 				
-			elif evento.key == pygame.K_DOWN and not pygame.key.get_pressed()[K_UP]:
-				velocidady = 0
-				if not (pygame.key.get_pressed()[K_UP] or pygame.key.get_pressed()[K_DOWN]):
+			elif evento.key == pygame.K_DOWN:
+				if pygame.key.get_pressed()[K_LEFT]:
+					move = "left"
+				elif pygame.key.get_pressed()[K_RIGHT]:
+					move = "right"
+				else:
 					movement = False
+				if pygame.key.get_pressed()[K_UP]:
+					velocidady = -0.2
+					move = "up"
+					movement = True
+				else:
+					velocidady = 0
+
 	# animacion
 	down = [(0, 0, 31, 33), (0, 59, 31 , 33)]
 	up = [(122, 0, 31 ,33), (122, 59 ,31, 33)]
