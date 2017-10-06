@@ -170,21 +170,21 @@ while True:
 					sprite_section = attack_down[0]
 				else:
 					sprite_section = attack_down[1]
-		elif move == "up":
-			if round(a)%2==0:
-				sprite_section = attack_up[0]
-			else:
-				sprite_section = attack_up[1]
-		elif move == "left":
-			if round(a)%2==0:
-				sprite_section = attack_left[0]
-			else:
-				sprite_section = attack_left[1]
-		elif move == "right":
-			if round(a)%2==0:
-				sprite_section = attack_right[0]
-			else:
-				sprite_section = attack_right[1]
+			elif move == "up":
+				if round(a)%2==0:
+					sprite_section = attack_up[0]
+				else:
+					sprite_section = attack_up[1]
+			elif move == "left":
+				if round(a)%2==0:
+					sprite_section = attack_left[0]
+				else:
+					sprite_section = attack_left[1]
+			elif move == "right":
+				if round(a)%2==0:
+					sprite_section = attack_right[0]
+				else:
+					sprite_section = attack_right[1]
 
 
 		s += 0.005
